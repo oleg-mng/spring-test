@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class CustomerService {
 
-    private CustomerRepository customerRepository;
+    private final CustomerRepository customerRepository;
 
     public List<CustomerResponse> getAll(){
         return customerRepository.findAll().stream()
@@ -22,7 +22,7 @@ public class CustomerService {
                 .collect(Collectors.toList());
     };
 
-    public Optional<CustomerResponse> findById(Long id){
+    public Optional<CustomerResponse> getById(Long id){
         return customerRepository.findById(id)
                 .map(this::map);
     };
@@ -31,6 +31,6 @@ public class CustomerService {
         CustomerResponse response = new CustomerResponse();
         response.setId(customer.getId());
         response.setName(customer.getName());
-        return  response;
+        return response;
     }
 }

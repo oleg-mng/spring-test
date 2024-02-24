@@ -24,7 +24,7 @@ public class CustomerController {
     }
     @GetMapping("{id}")
     public ResponseEntity<CustomerResponse> getById(@PathVariable Long id){
-        return service.findById(id)
+        return service.getById(id)
                 .map(it -> ResponseEntity.ok(it))
                 .orElseGet(()-> ResponseEntity.status(HttpStatus.NOT_FOUND).build());
     }
